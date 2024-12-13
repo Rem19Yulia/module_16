@@ -21,3 +21,15 @@ def update_user():
 @router.delete("/delete")
 def delete_user():
     pass  # Здесь будет логика для удаления пользователя
+
+# backend/routers/user.py
+from fastapi import APIRouter, Depends, status, HTTPException
+from sqlalchemy.orm import Session
+from backend.db_depends import get_db
+from typing import Annotated
+from models import User
+from schemas import CreateUser, UpdateUser
+from sqlalchemy import insert, select, update, delete
+from slugify import slugify
+router = APIRouter()
+
